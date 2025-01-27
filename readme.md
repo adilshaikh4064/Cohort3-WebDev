@@ -43,6 +43,8 @@ Welcome to my journey of learning Fullstack Development through the COHORT3.0 pr
 - Debugging and testing JavaScript code
 
 ### Week 4: HTTP Servers
+[Notes1](https://petal-estimate-4e9.notion.site/Node-js-Bun-and-JS-runtimes-a09a41ccd61c4f498e55750c9a1c9b34)
+[Notes2](https://petal-estimate-4e9.notion.site/Context-5386b35e836f46a08d3ed523f45ffbda)
 
 - Introduction to HTTP protocol
 - Nodejs, Bun and JS runtimes
