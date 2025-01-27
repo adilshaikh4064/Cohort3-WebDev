@@ -1,0 +1,10 @@
+.centered-div{
+    height: 200px;
+    width: 200px;
+    background-color: blanchedalmond;
+    text-align: center;
+}
+.inner{
+    height: 50px;
+    width: auto;
+}
