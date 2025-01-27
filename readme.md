@@ -45,6 +45,7 @@ Welcome to my journey of learning Fullstack Development through the COHORT3.0 pr
 ### Week 4: HTTP Servers
 
 - Introduction to HTTP protocol
+- Nodejs, Bun and JS runtimes
 - Creating servers with Node.js
 - Understanding request and response lifecycle
 - REST API basics
