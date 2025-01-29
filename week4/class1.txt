@@ -1,0 +1,11 @@
+1. What is Node.js?
+2. What is Bun?
+    .Starting a node project
+3. npm [node package manager]
+4. Internam Packages [filesystem, path]
+5. External Packages
+6. package.json/package-lock.json
+
+=> Assignments:
+    1. create a CLI locally using COMMANDER.js
+    2. create a comprehensive CLI for todo[add,delete,mark,update];
