@@ -8,6 +8,8 @@ Welcome to my journey of learning Fullstack Development through the COHORT3.0 pr
 
 ### Week 1: Orientation
 
+[Orientation](https://projects.100xdevs.com/tracks/javascript-1/Javascript-101-2)
+
 - Overview of the course structure
 - Introduction to fullstack development
 - Setting up the development environment
@@ -16,6 +18,8 @@ Welcome to my journey of learning Fullstack Development through the COHORT3.0 pr
 - Understanding the importance of problem-solving and debugging skills
 
 ### Week 2: HTML & CSS
+
+[JS](https://projects.100xdevs.com/tracks/javascript-1/Javascript-101-2)
 
 - HTML Basics
   - Semantic elements
@@ -30,6 +34,11 @@ Welcome to my journey of learning Fullstack Development through the COHORT3.0 pr
   - Writing clean and maintainable code
 
 ### Week 3: JavaScript, Async JavaScript & Promises
+
+[DOM1](https://projects.100xdevs.com/tracks/dom-2/DOM-Part-2--1)
+[DOM2](https://projects.100xdevs.com/tracks/dom-1/Basics-of-DOM-1)
+[PROMISES](https://projects.100xdevs.com/tracks/promises-async-await/Promises-and-async--await-1)
+[ASYNC/AWAIT](https://projects.100xdevs.com/tracks/async-js-1/Asynchronous-Javascript--Callbacks-and-more-1)
 
 - JavaScript Basics
   - Variables (var, let, const)
