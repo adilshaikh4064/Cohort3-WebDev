@@ -1,0 +1,14 @@
+HTTP Deep dive
+
+-Recap week4
+-Headers
+-fetch API
+-create an HTTP server
+-Middlewares
+-Route specific Middlewares
+-Assignments on Middlewares
+-Commonly used Middlewares
+-CORS: cross origin resource sharing
+
+
+-- dynamic routing {params}
