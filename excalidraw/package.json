@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.17.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
