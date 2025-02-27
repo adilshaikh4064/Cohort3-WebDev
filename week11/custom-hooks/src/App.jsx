@@ -14,64 +14,97 @@ function App() {
   // }
 
 
-  // const [state,setState]=useState(0);
-  // const prevState=usePrev(state);
+  const [state,setState]=useState(0);
+  const prevState=usePrev(state,null);
 
-  // const [glitch,setGlitch]=useState(0);
+  const [glitch,setGlitch]=useState(0);
 
-  const inputRef=useRef();
-  const [text,setText]=useState("");
-  const handleChange=function(){
-    useDebounce();
-    setText(inputRef.current.value);
-  }
+  // const inputRef=useRef();
+  // const [text,setText]=useState("");
+  // const handleChange=function(){
+  //   setText(inputRef.current.value);
+  // }
+  // const debouncedValue=useDebounce(text,300);
+
+  // useEffect(function(){
+  //   console.log('expensive backend operation called');
+  //   console.log(debouncedValue);  
+  // },[debouncedValue])
 
   return (
     <>
-      <p> search the product </p>
-      <input type="text" ref={inputRef} placeholder="type something... " onChange={handleChange} />
-      <p> entered input value: {text} </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* The commented code block you provided in the `App` component is setting up a simple UI with some
-functionality using React hooks. Here's a breakdown of what each part of the code is doing: */}
-      {/* <p> {state} </p>
+    {/* The commented code block you provided in the `App` component is setting up a simple UI with some
+    functionality using React hooks. Here's a breakdown of what each part of the code is doing: */}
+      <p> {state} </p>
       <button onClick={()=>{
         setState(state=>state+1);
       }}>
         click to increase
       </button>
-
+      {" "}
+      <button
+        onClick={()=>{
+          setState(state=>state-1);
+        }}
+      >click to decrease</button>
       <p> the previous value of state was {prevState} </p>
 
-      <button onClick={()=>{setGlitch(glitch+1)}}>cause the glitch</button> */}
+      <button onClick={()=>{setGlitch(glitch+1)}}>cause the glitch</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* The commented code block you provided in the `App` component is setting up a simple search
+functionality using React hooks. Here's a breakdown of what each part of the code is doing: */ }
+      {/* <p> search the product </p>
+      <input type="text" ref={inputRef} placeholder="type something... " onChange={handleChange} />
+      <p> entered input value: {text} </p> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {/* The commented code block you provided in the `App` component is setting up a section that displays
 details of a post based on the `currentPost` state value. Here's a breakdown of what the code is

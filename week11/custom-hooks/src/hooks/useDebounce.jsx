@@ -1,16 +1,19 @@
+import { useEffect, useState } from "react";
 
-let currentClock;
-const searchBackend=function(){
-    console.log('search backend function get called !');
-    clearInterval(currentClock);
-    currentClock=undefined;
-}
+const useDebounce=function(inputText,delay){
+    const [debouncedValue,setDebouncedValue]=useState(inputText);
 
-const useDebounce=function(){
-    if(currentClock) return;
-    currentClock=setTimeout(function(){
-        searchBackend();
-    },[3000]);
+    useEffect(function(){
+        const handlerId=setTimeout(() => {
+            setDebouncedValue(inputText);
+        }, delay);
+
+        return function(){
+            clearInterval(handlerId);
+        }
+    },[inputText,delay]);
+
+    return debouncedValue;
 }
 
 export default useDebounce;
