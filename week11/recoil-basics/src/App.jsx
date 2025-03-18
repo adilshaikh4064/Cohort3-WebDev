@@ -4,47 +4,18 @@ import BasicRecoil from './BasicRecoil'
 import TodoList from './Todo';
 import AsyncDataQueries from './AsyncDataQueries';
 import { Component, Suspense } from 'react';
+import ContextvsRecoil from './ContextvsRecoil';
+import AdvancedRecoil from './AdvancedRecoil';
 
-
-class ErrorBoundary extends Component {
-  constructor(props) {
-      super(props);
-      this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-      return { hasError: true };
-  }
-
-  componentDidCatch(error, info) {
-      console.error("Error caught:", error, info);
-  }
-
-  render() {
-      if (this.state.hasError) {
-          return <h1>Something went wrong.</h1>;
-      }
-
-      return this.props.children; 
-  }
-}
-
-const BuggyComponent = () => {
-  throw new Error("I crashed!");
-};
 
 
 function App() {
   return (
-    <RecoilRoot>
-      <ErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
-          <AsyncDataQueries/>
-        </Suspense>
-      </ErrorBoundary>
-    </RecoilRoot>
-  )
+  <RecoilRoot>
+    <h2>hello world</h2>
+    <TodoList/>
+  </RecoilRoot>
+  );
 }
 
-export {ErrorBoundary}
 export default App

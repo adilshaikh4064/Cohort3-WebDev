@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { atom, selector, selectorFamily, useRecoilCallback, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { ErrorBoundary } from "./App";
 
 
 const userInfo=[
