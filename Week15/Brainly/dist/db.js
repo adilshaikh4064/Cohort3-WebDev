@@ -42,7 +42,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TagModel = exports.ContentModel = exports.UserModel = exports.dbConnect = void 0;
+exports.LinkModel = exports.TagModel = exports.ContentModel = exports.UserModel = exports.dbConnect = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const config_1 = require("./config");
 const DATABASE_NAME = config_1.config.dbName;
@@ -97,11 +97,6 @@ const ContentSchema = new mongoose_1.Schema({
         type: mongoose_1.default.Types.ObjectId,
         ref: 'User',
         required: true
-    },
-    sharableId: {
-        type: String,
-        unique: true,
-        sparse: true
     }
 });
 const TagSchema = new mongoose_1.Schema({
@@ -111,9 +106,20 @@ const TagSchema = new mongoose_1.Schema({
         trim: true
     }
 });
+const LinkSchema = new mongoose_1.Schema({
+    hash: String,
+    userId: {
+        type: mongoose_1.default.Types.ObjectId,
+        ref: 'User',
+        unique: true,
+        require: true
+    }
+});
 const UserModel = (0, mongoose_1.model)('User', UserSchema);
 exports.UserModel = UserModel;
 const ContentModel = (0, mongoose_1.model)('Content', ContentSchema);
 exports.ContentModel = ContentModel;
 const TagModel = (0, mongoose_1.model)('Tag', TagSchema);
 exports.TagModel = TagModel;
+const LinkModel = (0, mongoose_1.model)('Link', LinkSchema);
+exports.LinkModel = LinkModel;

@@ -21,7 +21,7 @@ const db_1 = require("./db");
 const config_1 = require("./config");
 const middleware_1 = require("./middleware");
 const mongoose_1 = __importDefault(require("mongoose"));
-const uuid_1 = require("uuid");
+const util_1 = require("./util");
 const SALT_ROUNDS = config_1.config.saltRounds;
 const JWT_SECRET = config_1.config.jwtSecret;
 const userRouter = express_1.default.Router();
@@ -165,25 +165,22 @@ contentRouter.delete('/', middleware_1.userMiddleware, (req, res) => __awaiter(v
 }));
 brainRouter.post('/share', middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { contentId } = req.body;
-        const content = yield db_1.ContentModel.findOne({
-            _id: new mongoose_1.default.mongo.BSON.ObjectId(contentId),
-            userId: req.userId
-        });
-        if (!content) {
-            res.status(404).json({
-                message: 'content not found.',
+        const { share } = req.body;
+        const hash = (0, util_1.generateUniqueHash)(12);
+        if (share) {
+            yield db_1.LinkModel.create({
+                userId: req.userId,
+                hash
             });
-            return;
         }
-        if (!content.sharableId) {
-            content.sharableId = (0, uuid_1.v4)();
-            yield content.save();
+        else {
+            yield db_1.LinkModel.deleteOne({
+                userId: req.userId
+            });
         }
-        const sharaLink = `http://localhost:3000/share/${content.sharableId}`;
         res.status(200).json({
-            message: 'sharable link generated',
-            sharaLink
+            message: 'sharable hash generated',
+            shareLink: hash
         });
     }
     catch (error) {
@@ -196,7 +193,16 @@ brainRouter.post('/share', middleware_1.userMiddleware, (req, res) => __awaiter(
 brainRouter.get('/:sharelink', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { sharelink } = req.params;
-        const content = yield db_1.ContentModel.findOne({ shareableId: sharelink }).populate('tags');
+        const foundLink = yield db_1.LinkModel.findOne({
+            hash: sharelink,
+        });
+        if (!foundLink) {
+            res.status(404).json({
+                message: 'link expired or not valid',
+            });
+            return;
+        }
+        const content = yield db_1.ContentModel.find({ userId: foundLink.userId }).populate('tags');
         if (!content) {
             res.status(404).json({
                 message: 'invalid or expired link'

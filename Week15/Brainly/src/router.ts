@@ -2,11 +2,12 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import { UserSchemaZod, User, ContentSchemaZod, Content } from "./zod";
-import { ContentModel, IContent, TagModel, UserModel } from "./db";
+import { ContentModel, IContent, LinkModel, TagModel, UserModel } from "./db";
 import { config } from "./config";
 import { userMiddleware } from "./middleware";
 import mongoose from "mongoose";
 import {v4 as uuidv4} from 'uuid';
+import { generateUniqueHash } from "./util";
 
 const SALT_ROUNDS = config.saltRounds;
 const JWT_SECRET=config.jwtSecret;
@@ -165,29 +166,23 @@ contentRouter.delete('/',userMiddleware, async (req,res)=>{
 
 brainRouter.post('/share',userMiddleware, async (req,res)=>{
     try{
-        const {contentId}=req.body;
-
-        const content= await ContentModel.findOne({
-            _id: new mongoose.mongo.BSON.ObjectId(contentId),
-            userId: req.userId
-        }) as IContent;
-
-        if(!content){
-            res.status(404).json({
-                message:'content not found.',
+        const {share}=req.body;
+        const hash=generateUniqueHash(12);
+        if(share){
+            await LinkModel.create({
+                userId: req.userId,
+                hash
             })
-            return;
+        }
+        else{
+            await LinkModel.deleteOne({
+                userId: req.userId
+            })
         }
 
-        if(!content.sharableId){
-            content.sharableId=uuidv4();
-            await content.save();
-        }
-
-        const sharaLink=`http://localhost:3000/share/${content.sharableId}`;
         res.status(200).json({
-            message:'sharable link generated',
-            sharaLink
+            message: 'sharable hash generated',
+            shareLink: hash
         })
     }
     catch(error){
@@ -200,7 +195,16 @@ brainRouter.post('/share',userMiddleware, async (req,res)=>{
 brainRouter.get('/:sharelink', async (req,res)=>{
     try{
         const {sharelink}=req.params;
-        const content=await ContentModel.findOne({shareableId:sharelink}).populate('tags');
+        const foundLink= await LinkModel.findOne({
+            hash:sharelink,
+        })
+        if(!foundLink){
+            res.status(404).json({
+                message:'link expired or not valid',
+            })
+            return;
+        }
+        const content=await ContentModel.find({userId: foundLink.userId}).populate('tags');
         if(!content){
             res.status(404).json({
                 message:'invalid or expired link'

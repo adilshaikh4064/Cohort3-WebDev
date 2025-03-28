@@ -1,0 +1,22 @@
+{
+  "name": "week17",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"tsc --watch",
+    "dev":"nodemon dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/pg": "^8.11.11",
+    "nodemon": "^3.1.9",
+    "pg": "^8.14.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
