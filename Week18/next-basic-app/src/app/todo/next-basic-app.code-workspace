@@ -1,10 +1,13 @@
 {
-  "folders": [
-    {
-      "path": "../../../../../Week21-Monorepo"
+    "folders": [
+        {
+            "path": "../../../../../../paytm-main"
+        },
+        {
+            "path": "../../../../../../my-projects"
+        }
+    ],
+    "settings": {
+        "postman.settings.dotenv-detection-notification-visibility": false
     }
-  ],
-  "settings": {
-    "postman.settings.dotenv-detection-notification-visibility": false
-  }
 }
