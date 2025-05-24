@@ -1,6 +1,5 @@
 import mongoose, { model, Schema, Document } from "mongoose";
 import { config } from "./config";
-import { ObjectId } from "bson";
 
 const DATABASE_NAME = config.dbName;
 const MONGODB_URL = config.mongodbUrl;

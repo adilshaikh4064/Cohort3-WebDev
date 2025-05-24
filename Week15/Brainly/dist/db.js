@@ -51,14 +51,14 @@ const dbConnect = function () {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!config_1.config.mongodbUrl)
-                throw new Error('MONGODB URL is not defined.');
+                throw new Error("MONGODB URL is not defined.");
             if (!config_1.config.dbName)
-                throw new Error('DATABASE NAME is not defined.');
+                throw new Error("DATABASE NAME is not defined.");
             yield mongoose_1.default.connect(`${MONGODB_URL}`);
-            console.log('Database connected successfully.');
+            console.log("Database connected successfully.");
         }
         catch (error) {
-            console.error('Database connection error: ', error);
+            console.error("Database connection error: ", error);
             process.exit(0);
         }
     });
@@ -69,7 +69,7 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         unique: true,
         required: true,
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
@@ -78,48 +78,46 @@ const UserSchema = new mongoose_1.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
-    name: String
+    name: String,
 });
 const ContentSchema = new mongoose_1.Schema({
     type: {
         type: String,
-        enum: ['document', 'tweet', 'youtube', 'link'],
-        required: true
+        enum: ["document", "tweet", "youtube", "link"],
+        required: true,
     },
     title: String,
     link: String,
-    tags: [
-        { type: mongoose_1.default.Types.ObjectId, ref: 'Tag' }
-    ],
+    tags: [{ type: mongoose_1.default.Types.ObjectId, ref: "Tag" }],
     userId: {
         type: mongoose_1.default.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+        ref: "User",
+        required: true,
+    },
 });
 const TagSchema = new mongoose_1.Schema({
     tagName: {
         type: String,
         unique: true,
-        trim: true
-    }
+        trim: true,
+    },
 });
 const LinkSchema = new mongoose_1.Schema({
     hash: String,
     userId: {
         type: mongoose_1.default.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         unique: true,
-        require: true
-    }
+        require: true,
+    },
 });
-const UserModel = (0, mongoose_1.model)('User', UserSchema);
+const UserModel = (0, mongoose_1.model)("User", UserSchema);
 exports.UserModel = UserModel;
-const ContentModel = (0, mongoose_1.model)('Content', ContentSchema);
+const ContentModel = (0, mongoose_1.model)("Content", ContentSchema);
 exports.ContentModel = ContentModel;
-const TagModel = (0, mongoose_1.model)('Tag', TagSchema);
+const TagModel = (0, mongoose_1.model)("Tag", TagSchema);
 exports.TagModel = TagModel;
-const LinkModel = (0, mongoose_1.model)('Link', LinkSchema);
+const LinkModel = (0, mongoose_1.model)("Link", LinkSchema);
 exports.LinkModel = LinkModel;
